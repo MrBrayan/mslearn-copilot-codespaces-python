@@ -35,3 +35,20 @@ def generate(body: Body):
     """
     string = base64.b64encode(os.urandom(64))[:body.length].decode('utf-8')
     return {'token': string}
+
+
+class Text(BaseModel):
+    text: str
+
+
+@app.post('/accept')
+def accept(body: Body):
+    """
+    accepts a POST request with a JSON body containing a single field called "text" and returns a checksum of the text. Example POST request body:
+
+    {
+        "text": "Hola, este es el textopara calcular el checksum"
+    }
+    """
+    string = base64.b64encode(os.urandom(64))[:body.length].decode('utf-8')
+    return {'token': string}
